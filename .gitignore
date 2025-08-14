@@ -1,0 +1,57 @@
+# Nginx built binaries
+nginx-1.26.2/objs/nginx
+nginx-1.26.2/objs/*.o
+nginx-1.26.2/objs/*.d
+nginx-1.26.2/objs/*.h
+nginx-1.26.2/objs/*.8
+nginx-1.26.2/objs/*.c
+nginx-1.26.2/objs/*.cpp
+
+# OpenSSL built artifacts
+openssl-3.4.0/*.o
+openssl-3.4.0/*.d
+openssl-3.4.0/*.a
+openssl-3.4.0/*.so
+openssl-3.4.0/*.dylib
+openssl-3.4.0/apps/*.o
+openssl-3.4.0/apps/*.d
+openssl-3.4.0/crypto/*.o
+openssl-3.4.0/crypto/*.d
+openssl-3.4.0/ssl/*.o
+openssl-3.4.0/ssl/*.d
+openssl-3.4.0/test/*.o
+openssl-3.4.0/test/*.d
+openssl-3.4.0/fuzz/*.o
+openssl-3.4.0/fuzz/*.d
+
+# PCRE2 built artifacts
+pcre2-10.44/*.o
+pcre2-10.44/*.d
+pcre2-10.44/*.a
+pcre2-10.44/*.so
+pcre2-10.44/*.dylib
+pcre2-10.44/src/*.o
+pcre2-10.44/src/*.d
+pcre2-10.44/src/*.lo
+
+# Common build artifacts
+*.o
+*.d
+*.a
+*.so
+*.dylib
+*.lo
+*.la
+*.log
+*.tmp
+*.swp
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

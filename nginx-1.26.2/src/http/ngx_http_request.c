@@ -3092,6 +3092,9 @@ closed:
                   "client prematurely closed connection");
 
     ngx_http_finalize_request(r, NGX_HTTP_CLIENT_CLOSED_REQUEST);
+    ngx_log_error(NGX_LOG_INFO, c->log, 0,
+                  "[%s:%d] %s(): HTTP request finalized with client closed request",
+                  __FILE__, __LINE__, "ngx_http_read_client_request_body_handler");
 }
 
 

@@ -1350,6 +1350,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
         if (!u->cacheable) {
             ngx_http_upstream_finalize_request(r, u,
                                                NGX_HTTP_CLIENT_CLOSED_REQUEST);
+            ngx_log_error(NGX_LOG_INFO, r->connection->log, 0,
+                          "[%s:%d] %s(): upstream request finalized with client closed request",
+                          __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
         }
 
         return;
@@ -1367,6 +1370,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
         if (c->write->error) {
             ngx_http_upstream_finalize_request(r, u,
                                                NGX_HTTP_CLIENT_CLOSED_REQUEST);
+            ngx_log_error(NGX_LOG_INFO, r->connection->log, 0,
+                          "[%s:%d] %s(): upstream request finalized with client closed request (QUIC write error)",
+                          __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
         }
 
         return;
@@ -1395,6 +1401,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
                           "connection, so upstream connection is closed too");
             ngx_http_upstream_finalize_request(r, u,
                                                NGX_HTTP_CLIENT_CLOSED_REQUEST);
+            ngx_log_error(NGX_LOG_INFO, ev->log, 0,
+                          "[%s:%d] %s(): upstream request finalized with client closed request (kqueue)",
+                          __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
             return;
         }
 
@@ -1405,6 +1414,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
         if (u->peer.connection == NULL) {
             ngx_http_upstream_finalize_request(r, u,
                                                NGX_HTTP_CLIENT_CLOSED_REQUEST);
+            ngx_log_error(NGX_LOG_INFO, ev->log, 0,
+                          "[%s:%d] %s(): upstream request finalized with client closed request (kqueue, no peer connection)",
+                          __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
         }
 
         return;
@@ -1448,6 +1460,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
                         "connection, so upstream connection is closed too");
             ngx_http_upstream_finalize_request(r, u,
                                                NGX_HTTP_CLIENT_CLOSED_REQUEST);
+            ngx_log_error(NGX_LOG_INFO, ev->log, 0,
+                          "[%s:%d] %s(): upstream request finalized with client closed request (epoll)",
+                          __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
             return;
         }
 
@@ -1458,6 +1473,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
         if (u->peer.connection == NULL) {
             ngx_http_upstream_finalize_request(r, u,
                                                NGX_HTTP_CLIENT_CLOSED_REQUEST);
+            ngx_log_error(NGX_LOG_INFO, ev->log, 0,
+                          "[%s:%d] %s(): upstream request finalized with client closed request (epoll, no peer connection)",
+                          __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
         }
 
         return;
@@ -1511,6 +1529,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
                       "so upstream connection is closed too");
         ngx_http_upstream_finalize_request(r, u,
                                            NGX_HTTP_CLIENT_CLOSED_REQUEST);
+        ngx_log_error(NGX_LOG_INFO, ev->log, 0,
+                      "[%s:%d] %s(): upstream request finalized with client closed request (recv)",
+                      __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
         return;
     }
 
@@ -1520,6 +1541,9 @@ ngx_http_upstream_check_broken_connection(ngx_http_request_t *r,
     if (u->peer.connection == NULL) {
         ngx_http_upstream_finalize_request(r, u,
                                            NGX_HTTP_CLIENT_CLOSED_REQUEST);
+        ngx_log_error(NGX_LOG_INFO, ev->log, 0,
+                      "[%s:%d] %s(): upstream request finalized with client closed request (recv, no peer connection)",
+                      __FILE__, __LINE__, "ngx_http_upstream_check_broken_connection");
     }
 }
 
@@ -4407,6 +4431,9 @@ ngx_http_upstream_next(ngx_http_request_t *r, ngx_http_upstream_t *u,
     if (r->connection->error) {
         ngx_http_upstream_finalize_request(r, u,
                                            NGX_HTTP_CLIENT_CLOSED_REQUEST);
+        ngx_log_error(NGX_LOG_INFO, r->connection->log, 0,
+                      "[%s:%d] %s(): upstream request finalized with client closed request (connection error)",
+                      __FILE__, __LINE__, "ngx_http_upstream_next");
         return;
     }
 

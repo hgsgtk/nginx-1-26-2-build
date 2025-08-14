@@ -4191,6 +4191,9 @@ ngx_http_v2_read_client_request_body_handler(ngx_http_request_t *r)
         r->stream->skip_data = 1;
 
         ngx_http_finalize_request(r, NGX_HTTP_CLIENT_CLOSED_REQUEST);
+        ngx_log_error(NGX_LOG_INFO, fc->log, 0,
+                      "[%s:%d] %s(): HTTP/2 request finalized with client closed request",
+                      __FILE__, __LINE__, "ngx_http_v2_read_unbuffered_request_body");
         return;
     }
 
